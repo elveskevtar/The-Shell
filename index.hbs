@@ -18,6 +18,19 @@
 
 {{! The main content area on the homepage }}
 <main class="content" role="main">
+    <div style="position: relative; width: 80%; max-width: 1200px; margin: 4rem auto; color: #1c212b;">
+        <button class="gh-search-icon" aria-label="search" data-ghost-search style="display: inline-flex; justify-content: left; align-items: center; width: 100%; height: 40px; padding: 10px; border: 2px; color: inherit; background-color: #fff; cursor: pointer; outline: none;">
+            <svg width="20" height="20" fill="none" viewBox="0 0 24 24"><path d="M14.949 14.949a1 1 0 0 1 1.414 0l6.344 6.344a1 1 0 0 1-1.414 1.414l-6.344-6.344a1 1 0 0 1 0-1.414Z" fill="currentColor"/><path d="M10 3a7 7 0 1 0 0 14 7 7 0 0 0 0-14Zm-9 7a9 9 0 1 1 18 0 9 9 0 0 1-18 0Z" fill="currentColor"/></svg>
+        </button>
+    </div>
+    <div style="position: relative; width: 80%; max-width: 1200px; margin: 4rem auto; background-color: transparent;">
+        {{#get "tags" limit="all" include="posts,count.posts" order="count.posts desc"}}
+            Posts by tag:
+            {{#foreach tags}}
+                <a href="{{url}}">{{name}}</a> <small>({{count.posts}})</small>{{^if @last}} | {{/if}}
+            {{/foreach}}
+        {{/get}}
+    </div>
 
     {{! Each post will be output using this markup }}
     {{#foreach posts}}
